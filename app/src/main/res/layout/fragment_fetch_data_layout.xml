@@ -7,7 +7,7 @@
 
     <TextView android:layout_width="match_parent"
               android:id="@+id/server_data_count"
-              android:text="页面一"
+              android:text="远端服务器数据"
               android:gravity="center"
               android:layout_height="48dp"/>
 
@@ -19,7 +19,7 @@
     <TextView android:layout_width="match_parent"
               android:id="@+id/my_data_count"
               android:gravity="center"
-              android:text="页面一"
+              android:text="我的服务器数据"
               android:layout_height="48dp"/>
 
     <Button android:layout_width="wrap_content"

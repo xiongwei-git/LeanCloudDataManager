@@ -5,7 +5,7 @@
 
     <!-- Drawer Items -->
     <string name="drawer_item_fetch_back_data">抓取后台数据</string>
-    <string name="drawer_item_action_bar">ActionBar Sample</string>
+    <string name="drawer_item_update_data_to_qi_niu">更新十条数据到七牛</string>
     <string name="drawer_item_multi_drawer">MultiDrawer Sample</string>
     <string name="drawer_item_non_translucent_status_drawer">NonTranslucentStatusDrawer Sample</string>
     <string name="drawer_item_complex_header_drawer">ComplexHeaderDrawer Sample</string>

@@ -1,7 +1,6 @@
 package com.ted.lcmanager.app;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,7 +15,8 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.ted.lcmanager.app.fragment.FetchDataFragment_;
-import com.ted.lcmanager.app.fragment.SecondFragment;
+import com.ted.lcmanager.app.fragment.QiNiuManagerFragment_;
+import com.ted.lcmanager.app.view.FragmentTabHost;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -29,9 +29,9 @@ public class MainActivity extends ActionBarActivity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
             if (iDrawerItem != null) {
                 if (iDrawerItem.getIdentifier() == 1) {
-                    mTabHost.setCurrentTab(0);
+                    mTabHost.setCurrentTabByTag("ONE");
                 }else if (iDrawerItem.getIdentifier() == 2) {
-                    mTabHost.setCurrentTab(1);
+                    mTabHost.setCurrentTabByTag("TWO");
                 }
             }
         }
@@ -45,8 +45,8 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
 
         //实例化TabHost对象，得到TabHost
-        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.frame_container);
+        mTabHost = (FragmentTabHost)findViewById(R.id.tab_host);
+        mTabHost.setUp(this, getSupportFragmentManager(), R.id.tab_host_index, R.id.tab_host_container);
 
         initTabHost();
 
@@ -56,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
                 .withHeader(R.layout.header)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_fetch_back_data).withIcon(GoogleMaterial.Icon.gmd_wb_sunny).withIdentifier(1).withCheckable(false),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_action_bar).withIcon(FontAwesome.Icon.faw_home).withIdentifier(2).withCheckable(false),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_update_data_to_qi_niu).withIcon(FontAwesome.Icon.faw_home).withIdentifier(2).withCheckable(false),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_multi_drawer).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(3).withCheckable(false),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_non_translucent_status_drawer).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4).withCheckable(false),
                         new PrimaryDrawerItem().withDescription("A more complex sample").withName(R.string.drawer_item_complex_header_drawer).withIcon(GoogleMaterial.Icon.gmd_adb).withIdentifier(5).withCheckable(false),
@@ -79,9 +79,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initTabHost(){
-        mTabHost.addTab(mTabHost.newTabSpec("Main").setIndicator(""), FetchDataFragment_.class,new Bundle());
-        mTabHost.addTab(mTabHost.newTabSpec("Second").setIndicator(""), SecondFragment.class,new Bundle());
-        mTabHost.setCurrentTab(0);
+        mTabHost.addTab("ONE",FetchDataFragment_.class,new Bundle());
+        mTabHost.addTab("TWO",QiNiuManagerFragment_.class,new Bundle());
+        mTabHost.setCurrentTabByTag("ONE");
     }
 
     @Override
