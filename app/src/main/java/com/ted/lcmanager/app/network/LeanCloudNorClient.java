@@ -1,5 +1,6 @@
 package com.ted.lcmanager.app.network;
 
+import android.text.TextUtils;
 import android.util.Log;
 import com.avos.avoscloud.*;
 import com.ted.lcmanager.app.Constants;
@@ -101,19 +102,20 @@ public class LeanCloudNorClient {
         testObject.saveInBackground(new MyCallBack(position));
     }
 
-    public void addPictureCount(final StatisticsModel model){
-        if(null == model)return;
-        AVObject testObject = new AVObject(Constants.PICTURE_INFO);
-        testObject.put("all",model.getAll());
-        testObject.put("featured", model.getSpe());
-        testObject.put("other", model.getOTH());
-        testObject.put("building", model.getBui());
-        testObject.put("food", model.getFoo());
-        testObject.put("nature", model.getFau());
-        testObject.put("people", model.getPeo());
-        testObject.put("technology", model.getTec());
-        testObject.put("object", model.getObj());
-        testObject.saveInBackground(new SaveCallback() {
+    public void addPictureCount(final StatisticsModel model,final String objectId){
+        if(null == model || TextUtils.isEmpty(objectId))return;
+        AVObject avObject = new AVObject(Constants.PICTURE_INFO);
+        avObject.setObjectId(objectId);
+        avObject.put("all",model.getAll());
+        avObject.put("featured", model.getSpe());
+        avObject.put("other", model.getOTH());
+        avObject.put("building", model.getBui());
+        avObject.put("food", model.getFoo());
+        avObject.put("nature", model.getFau());
+        avObject.put("people", model.getPeo());
+        avObject.put("technology", model.getTec());
+        avObject.put("object", model.getObj());
+        avObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null) {

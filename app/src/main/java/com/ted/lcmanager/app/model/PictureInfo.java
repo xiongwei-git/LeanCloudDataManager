@@ -16,6 +16,7 @@ public class PictureInfo {
     private int technology;
     private int object;
     private Date updatedAt;
+    private String objectId;
 
     public int getAll() {
         return all;
@@ -95,5 +96,13 @@ public class PictureInfo {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public String getObjectId() {
+        return objectId;
     }
 }

@@ -100,13 +100,25 @@ public class FetchDataFragment extends Fragment {
     }
 
     @Click(R.id.update_all_btn)
-    void updateAllData(){
+    void updateNewData(){
         if(null == mAllData || mAllData.size()==0)return;
+        if(null == mPictureInfo || mPictureInfo.getAll() > mAllData.size())return;
         for (int i = 0;i< mAllData.size();i++){
             StealDataModel model = mAllData.get(i);
-            mLeanCloudNorClient.addStealData(model,i);
+            if(model.getId() > mPictureInfo.getAll()){
+                mLeanCloudNorClient.addStealData(model, i);
+            }
         }
     }
+
+//    @Click(R.id.update_all_btn)
+//    void updateAllData(){
+//        if(null == mAllData || mAllData.size()==0)return;
+//        for (int i = 0;i< mAllData.size();i++){
+//            StealDataModel model = mAllData.get(i);
+//            mLeanCloudNorClient.addStealData(model,i);
+//        }
+//    }
 
     @Click(R.id.update_info_btn)
     void updateInfoData() {
@@ -116,8 +128,11 @@ public class FetchDataFragment extends Fragment {
             StealDataModel model = mAllData.get(i);
             statisticsModel.Statistics(model);
         }
-        statisticsModel.Statistics(mAllData.get(1999));
-        mLeanCloudNorClient.addPictureCount(statisticsModel);
+        //add special one
+        StealDataModel model = new StealDataModel();
+        model.setCategory(4);
+        statisticsModel.Statistics(model);
+        mLeanCloudNorClient.addPictureCount(statisticsModel,mPictureInfo.getObjectId());
     }
 
     @Click(R.id.add_521_btn)
