@@ -68,6 +68,12 @@
             android:text="更新最新十条"
             android:layout_height="wrap_content"/>
 
+    <Button android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/update_10_to_qiniu_btn"
+            android:text="转换数据到七牛"
+            android:layout_height="wrap_content"/>
+
 </LinearLayout>
 
 

@@ -6,6 +6,7 @@ import com.avos.avoscloud.*;
 import com.ted.lcmanager.app.Constants;
 import com.ted.lcmanager.app.model.StatisticsModel;
 import com.ted.lcmanager.app.model.StealDataModel;
+import com.ted.lcmanager.app.util.Utils;
 
 import java.util.List;
 
@@ -14,6 +15,24 @@ import java.util.List;
  * Created by Ted on 2015/3/29.
  */
 public class LeanCloudNorClient {
+    public void transDataToQiNiu(AVObject avObject){
+        if(null == avObject)return;
+        avObject.put("server_type","qiniu");
+        String oldSrc = avObject.getString("image_src");
+        if(TextUtils.isEmpty(oldSrc))return;
+        avObject.put("image_src", Utils.getQiNiuUrlFromImgix(oldSrc));
+        avObject.saveInBackground(new SaveCallback(){
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    Log.e("xiongwei", "更新七牛数据之一成功");
+                } else {
+                    Log.e("xiongwei", "更新七牛数据之一失败");
+                }
+            }
+        });
+    }
+
 
     public void updateNewData(final StealDataModel model,AVObject avObject){
         if(null == model)return;

@@ -86,6 +86,14 @@ public class FetchDataFragment extends Fragment {
         mLeanCloudNorClient.getMy10NewData(mGetMy10DataCallback);
     }
 
+
+    @Click(R.id.update_10_to_qiniu_btn)
+    void transToQiNiu(){
+        for (int i = 0;i< 10;i++){
+            mLeanCloudNorClient.transDataToQiNiu(mLastNew10Data.get(i));
+        }
+    }
+
     @Click(R.id.update_10_btn)
     void updateNew10Data(){
         if(null == mAllData || mAllData.size()==0)return;

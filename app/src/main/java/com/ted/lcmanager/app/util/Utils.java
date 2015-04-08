@@ -7,6 +7,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utils {
+    public static String getQiNiuUrlFromImgix(String imgixUrl){
+        String qiNiuUrl = "";
+        if(!TextUtils.isEmpty(imgixUrl)){
+            String name = imgixUrl.substring(imgixUrl.lastIndexOf("/")+1,imgixUrl.length());
+            qiNiuUrl = "http://7xigfx.com1.z0.glb.clouddn.com/"+name+".jpg";
+        }
+        return qiNiuUrl;
+    }
 
     /***
      * 获取默认格式的日期字符串
