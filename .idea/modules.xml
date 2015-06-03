@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LCManager.iml" filepath="$PROJECT_DIR$/LCManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LeanCloudDataManager.iml" filepath="$PROJECT_DIR$/LeanCloudDataManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

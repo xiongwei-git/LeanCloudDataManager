@@ -31,6 +31,7 @@ import java.util.List;
  */
 @EFragment(R.layout.fragment_fetch_data_layout)
 public class FetchDataFragment extends Fragment {
+    private final String TAG = "FetchDataFragment";
     @ViewById(R.id.server_data_count)
     TextView mServerCount;
     @ViewById(R.id.my_data_count)
@@ -158,7 +159,7 @@ public class FetchDataFragment extends Fragment {
     private Response.ErrorListener mCommonErrorListener = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.e("TAG", error.getMessage(), error);
+            Log.e(TAG, error.getMessage(), error);
             showToast("服务异常"+error.getMessage());
         }
     };
